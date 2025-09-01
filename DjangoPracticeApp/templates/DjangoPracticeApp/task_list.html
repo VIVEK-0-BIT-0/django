@@ -1,0 +1,30 @@
+{% extends "DjangoPracticeApp/base.html" %}
+{% block content %}
+
+<h2>Task List</h2>
+
+<!-- If no tasks exist, show a message -->
+{% if tasks %}
+    <ul>
+        {% for task in tasks %}
+            <li>
+                <!-- Show task title -->
+                {{ task.title }}
+
+                <!-- Show completed status -->
+                {% if task.completed %}
+                    <span style="color: green;">(Completed)</span>
+                {% else %}
+                    <span style="color: red;">(Pending)</span>
+                {% endif %}
+
+                <!-- Show created time -->
+                <small> | Created at: {{ task.created_at|date:"Y-m-d H:i" }}</small>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No tasks found. Add some tasks!</p>
+{% endif %}
+
+{% endblock %}
