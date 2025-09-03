@@ -3,6 +3,11 @@
 
 <h2>Task List</h2>
 
+<!-- Link to add a new task -->
+<p>
+    <a href="{% url 'task_add' %}">➕ Add New Task</a>
+</p>
+
 <!-- If no tasks exist, show a message -->
 {% if tasks %}
     <ul>
@@ -20,6 +25,10 @@
 
                 <!-- Show created time -->
                 <small> | Created at: {{ task.created_at|date:"Y-m-d H:i" }}</small>
+
+                <!-- Edit & Delete buttons -->
+                | <a href="{% url 'task_edit' task.pk %}">✏️ Edit</a>
+                | <a href="{% url 'task_delete' task.pk %}">🗑️ Delete</a>
             </li>
         {% endfor %}
     </ul>
@@ -28,3 +37,4 @@
 {% endif %}
 
 {% endblock %}
+

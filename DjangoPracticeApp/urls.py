@@ -1,9 +1,12 @@
 # DjangoPracticeApp/urls.py
 
-from django.urls import path                # Import Django's path() for URL routing
-from . import views                         # Import our views.py file
+from django.urls import path
+from .views import TaskListView, TaskCreateView, TaskUpdateView, TaskDeleteView
 
 urlpatterns = [
-    # When someone visits / (root of this app), call the task_list view.
-    path('', views.task_list, name='task_list'),
+    path('', TaskListView.as_view(), name='task_list'),       # List tasks
+    path('add/', TaskCreateView.as_view(), name='task_add'),  # Add task
+    path('edit/<int:pk>/', TaskUpdateView.as_view(), name='task_edit'),  # Edit task
+    path('delete/<int:pk>/', TaskDeleteView.as_view(), name='task_delete'),  # Delete task
+
 ]
